@@ -71,9 +71,11 @@ class Perceptron(object):
             y0 = -(w[0]*x0 + b) / w[1]
             x1 = -7
             y1 = -(w[0]*x1 + b) / w[1]
-            self.line.set_data([x0, y0], [x1, y1])
-        # else:
-        #     self.line.set_data([-b/w[0], 0], [-b/w[0], 1])
+            self.line.set_data([x0, x1], [y0, y1])
+        elif w[1] == 0 and w[0] != 0:
+            self.line.set_data([-b/w[0], -b/w[0]], [0, 1])
+        elif w[0] == 0 and w[1] != 0:
+            self.line.set_data([0, 1], [-b/w[1], -b/w[1]])
         # x1 = 0
         # y1 = -(w_[0]*x1 + b_) / w_[1]
         # label.set_text(w[i])
