@@ -1,2 +1,6 @@
-# Zhou-learning-nn
-This repository is my notes and source codes of deep learning and neural network
+# Algorithm_of_ML
+****
+**简介：** 该仓库用于存放有关机器学习的相关算法实现（更新中...）
+****
+## 算法目录
+1.反向传播算法（包含SGD,ADAM,RMSprop）
