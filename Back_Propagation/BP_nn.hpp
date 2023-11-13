@@ -27,33 +27,33 @@ using namespace std;
 
 #define PI acos(-1)
 
-double sigmoid(double x) {
+double sigmoid(double x) {  // sigmoid激活函数
     return (1 / (1 + exp(-x)));
 }
 
-double sigmoid_det(double x) { // x是sigmoid函数的输出
+double sigmoid_det(double x) {  // sigmoid函数的导数
     return sigmoid(x) * (1 - sigmoid(x));
 }
 
-double relu_activate(double x) {
+double relu_activate(double x) {  // relu激活函数
     if (x <= 0) return 0;
     return x;
 }
 
-double relu_activate_det(double x) {
+double relu_activate_det(double x) {  // relu激活函数的导数
     if (x <= 0) return 0;
     return 1;
 }
 
-double tanh_active(double x) {
+double tanh_active(double x) {  // tanh激活函数
     return (exp(x) - exp(-x)) / (exp(x) + exp(-x));
 }
 
-double tanh_active_det(double x) {
+double tanh_active_det(double x) {  // tanh激活函数的导数
     return 1 - tanh(x) * tanh(x);
 }
 
-double activate(double x, string type){
+double activate(double x, string type) {
     if (type == "sigmoid") return sigmoid(x);
     if (type == "relu") return relu_activate(x);
     if (type == "tanh") return tanh_active(x);
@@ -68,19 +68,19 @@ double activate_det(double x, string type) {
 }
 
 struct Layer {
-    vector<vector<double>> weights;
-    vector<double> bias;
-    vector<double> input;
-    vector<double> out;
-    vector<double> error;
-    vector<vector<double>> weights_grad;
-    vector<double> bias_grad;
-    // Adam所需的参数
+    vector<vector<double>> weights;  // 权重（上一层连到当前层）
+    vector<double> bias;  // 偏置
+    vector<double> input;  // 上一层的输出乘上对应权重求和后的结果（未经过激活函数）
+    vector<double> out;  // 经过激活函数后当前层的输出
+    vector<double> error;  // 当前层的误差
+    vector<vector<double>> weights_grad;  // 权重的梯度
+    vector<double> bias_grad;  // 偏置的梯度
+    // Adam所需的缓存值
     vector<vector<double>> weights_mt;
     vector<vector<double>> weights_vt;
     vector<double> bias_mt;
     vector<double> bias_vt;
-    // RMSProp所需的参数
+    // RMSProp所需的缓存值
     vector<vector<double>> weights_r;
     vector<double> bias_r;
     int step;
