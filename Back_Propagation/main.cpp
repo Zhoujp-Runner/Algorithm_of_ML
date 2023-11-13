@@ -6,10 +6,10 @@
  *
  * @details
  * 主函数文件
- * 最近修改日期：2023-11-10
+ * 最近修改日期：2023-11-13
  *
  * @author   Zhou Junping
- * @email    zhoujunpingnn@gmail.com
+ * @email    zhoujunping0413@qq.com
  * @version  1.0
  * @data     2023-11-06
  *
@@ -17,7 +17,6 @@
 #include <iostream>
 #include <math.h>
 #include "BP_network.hpp"
-#include <fstream>
 #include <string>
 #include "BP_nn.hpp"
 
@@ -26,7 +25,8 @@ using namespace std;
 int main() {
     srand(unsigned(time(NULL)));
     vector<int> nodes = {1,3,4,5,1};
-    Network model(nodes);
+    string a = "tanh";
+    Network model(nodes, a, false, 0.003, 20000, true);
     model.train();
     model.save_prediction();
     return 0;
