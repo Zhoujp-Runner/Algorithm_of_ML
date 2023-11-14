@@ -26,7 +26,7 @@ int main() {
     srand(unsigned(time(NULL)));
     vector<int> nodes = {1,3,4,5,1};
     string a = "tanh";
-    Network model(nodes, a, false, 0.003, 20000, true);
+    Network model(nodes, a, false, 0.03, 10000, true);
     model.train();
     model.save_prediction();
     return 0;
