@@ -208,7 +208,7 @@ public:
     void backward(int index) {
         // 计算输出层的误差
         if (final_activate) {
-            layers[layers_num - 1].error[0] = (get_output(layers_num, 0) - label[index]) * activate_det(get_output(layers_num, 0), active_type);
+            layers[layers_num - 1].error[0] = (get_output(layers_num, 0) - label[index]) * activate_det(get_input(layers_num, 0), active_type);
         } else {
             layers[layers_num - 1].error[0] = (get_output(layers_num, 0) - label[index]);  // 假设最后一层没有损失函数
         }
@@ -433,12 +433,12 @@ public:
         for (int epoch = 0; epoch < epochs; epoch++) {
             cout << epoch << endl;
             shuffle_random();
-//            // 单样本进行训练
-//            for (int index = 0; index < data.size(); index++) {
-//                forward(index);
-//                backward(index);
-//                update_sgd(index);
-//            }
+            // 单样本进行训练
+            for (int index = 0; index < data_size; index++) {
+                forward(index);
+                backward(index);
+                update_sgd(index);
+            }
             // 批量样本训练
             for (int id = 0; id < 10; id++) {
                 batch_forward_backward(id, 100);
